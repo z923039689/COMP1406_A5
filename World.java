@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class World{
   protected Location[][] locations;
-  protected Location     home;
+  protected Home     home;
   protected List<Player> players; // all players in the world
   
   public World(){
@@ -16,7 +16,7 @@ public class World{
         locations[r][c] = new EmptyLocation(new Position(r,c), "Nothing here to see.");
       }
     }
-    home = locations[0][0];
+    home = new Home(null, null, null, null);
     players = new ArrayList<Player>();
   }
   

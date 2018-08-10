@@ -1,5 +1,6 @@
 package A5;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** A Player in the game 
@@ -103,6 +104,23 @@ public class Player{
  /** ask for help when they need it */
  public void getHelp(){ 
    world.getHome().callForHelp(this, location);
+ }
+
+ /**deposit peaches at the home location*/
+ public void dropOffAtHome(int peaches) {
+  if (this.location.position.getX() == 0 && this.location.position.getY() == 0) { // ensure player is at Home location
+   if (peaches <= this.peaches.size()) { // ensure the amount of peaches they want to drop off does not exceed their inventory
+    for (int i = 0; i < peaches; i++) {
+     if (this.world.home.peaches.containsKey(this)) { // check to see if they have any peaches stored already
+      this.world.home.peaches.get(this).add(this.getPeach());
+     }
+     else { // if not, add player to home inventory
+      this.world.home.peaches.put(this, new ArrayList<Peach>());
+      this.world.home.peaches.get(this).add(this.getPeach());
+     }
+    }
+   }
+  }
  }
  
  @Override
