@@ -4,22 +4,17 @@ import java.util.*;
 
 public class Home extends Location {
 
-    protected String desc = "A Home is the home location. There is only one home in each world. " +
-            "This is where several of the players will begin the game. \n\n" +
-            "It is a place for players to drop off (to stockpile) peaches. The home keeps track of how " +
-            "many peaches each player brings back.\n\n" +
-            "The home will also create a new Helper player to go help another player in distress (low health). " +
-            "It will give the helper the \nlocation of the player in distress and some peaches to give to the " +
-            "distressed player to eat.";
-
-    public Map<Player, ArrayList<Peach> > peaches;
+    protected Map<Player, ArrayList<Peach> > peaches;
 
     public Home(Position p, String description, List<Player> people, List<Peach> peaches){
         super(p, description, people, peaches);
-        this.position = new Position(0,0);
-        this.description = desc;
-        this.peopleAtLocation = new ArrayList<>();
-        this.peachesAtLocation = new ArrayList<>();
+        this.description = "A Home is the home location. There is only one home in each world. " +
+                "This is where several of the players will begin the game. \n\n" +
+                "It is a place for players to drop off (to stockpile) peaches. The home keeps track of how " +
+                "many peaches each player brings back.\n\n" +
+                "The home will also create a new Helper player to go help another player in distress (low health). " +
+                "It will give the helper the \nlocation of the player in distress and some peaches to give to the " +
+                "distressed player to eat.";
         this.peaches = new HashMap<Player, ArrayList<Peach> >();
     }
 
