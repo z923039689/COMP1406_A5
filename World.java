@@ -16,7 +16,7 @@ public class World{
         locations[r][c] = new EmptyLocation(new Position(r,c), "Nothing here to see.");
       }
     }
-    home = new Home(new Position(0,0), null, new ArrayList<>(), new ArrayList<>());
+    home = new Home(null, null, new ArrayList<>(), new ArrayList<>());
     players = new ArrayList<Player>();
   }
   

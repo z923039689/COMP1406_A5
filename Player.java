@@ -106,15 +106,18 @@ public class Player{
    world.getHome().callForHelp(this, location);
  }
 
- /**deposit peaches at the home location*/
- public void dropOffAtHome(int peaches) {
+ /**store peaches at home location
+ *
+ * @param peaches number of peaches to deposit at home
+ */
+ public void storeAtHome(int peaches) {
   if (this.location.position.getX() == 0 && this.location.position.getY() == 0) { // ensure player is at Home location
-   if (peaches <= this.peaches.size()) { // ensure the amount of peaches they want to drop off does not exceed their inventory
+   if (peaches <= this.peaches.size()) { // ensure the amount of peaches they want to drop off does not exceed player's inventory
     for (int i = 0; i < peaches; i++) {
-     if (this.world.home.peaches.containsKey(this)) { // check to see if they have any peaches stored already
+     if (this.world.home.peaches.containsKey(this)) { // check to see if player exists in inventory keys
       this.world.home.peaches.get(this).add(this.getPeach());
      }
-     else { // if not, add player to home inventory
+     else { // if not, add player to home inventory keys
       this.world.home.peaches.put(this, new ArrayList<Peach>());
       this.world.home.peaches.get(this).add(this.getPeach());
      }
