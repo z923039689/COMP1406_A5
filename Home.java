@@ -46,40 +46,4 @@ public class Home extends Location {
     public void addPeach(Peach p) {}
 
 
-    public static void main(String[] args) {
-        World w = new World();
-        Player p = new Player(w, "cat", w.home, new ArrayList<Peach>(), 50, RGB.YELLOW);
-        Player q = new Player(w, "dog", w.getLocations().get(1), new ArrayList<Peach>(), 9, RGB.BLUE);
-        w.addPlayer(p).addPlayer(q);
-
-        System.out.println(w.getHome().description);
-        System.out.println(w.getHome().position);
-        System.out.println(w.getHome().peachesAtLocation);
-        System.out.println(w.getHome().peopleAtLocation);
-
-        p.peaches.add(new Peach(10, false));
-        p.peaches.add(new Peach(9, false));
-        p.peaches.add(new Peach(1, true));
-        System.out.println(Arrays.toString(p.peaches.toArray()));
-
-        p.storeAtHome(2);
-
-        System.out.println(w.home.peaches.toString());
-        System.out.println(p.peaches.toString());
-        q.play();
-        System.out.println(q.peaches.toString());
-        System.out.println(w.home.getPlayers().get(1).peaches.toString());
-        System.out.println(w.getHome().peopleAtLocation);
-        System.out.println(q.getHealth());
-        q.eatPeach();
-        System.out.println(q.peaches.toString());
-        System.out.println(q.getHealth());
-        q.storeAtHome(1);
-        q.setLocation(w.getHome());
-        q.storeAtHome(1);
-        q.storeAtHome(1);
-        q.storeAtHome(10);
-        System.out.println(w.home.peaches.toString());
-        System.out.println(w.home.getPlayers().get(1).equals(w.home.getPlayers().get(1)));
-    }
 }
