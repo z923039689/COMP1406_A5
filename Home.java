@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Home extends Location {
 
+    // used to keep track of peaches players have stockpiled at the Home location
     protected Map<Player, ArrayList<Peach>> peaches;
 
     public Home(World w, Position p, String description, List<Player> people, List<Peach> peaches){
@@ -19,13 +20,18 @@ public class Home extends Location {
         this.peaches = new HashMap<Player, ArrayList<Peach>>();
     }
 
+    /** When a player calls the getHelp method, this method instantiates a new helper, sends them to that player's
+     * location, and gives the player 10 ripe peaches. The helper then returns to Home, where they remain.
+     * @param p the player who calls the getHelp method
+     * @param l that player's current location
+     */
     public void callForHelp(Player p, Location l){
         Helper helper = new Helper(this.world,null, this, new ArrayList<Peach>(), 1000000, null);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) { // instantiate 10 ripe peaches
             helper.peaches.add(new Peach(10, false));
         }
         helper.setLocation(l);
-        helper.interact(p);
+        helper.interact(p); // give the 10 ripe peaches to the player in distress
         helper.setLocation(this);
     }
 
@@ -52,5 +58,9 @@ public class Home extends Location {
         q.play();
         System.out.println(q.peaches.toString());
         System.out.println(w.getHome().peopleAtLocation);
+        System.out.println(q.getHealth());
+        q.eatPeach();
+        System.out.println(q.peaches.toString());
+        System.out.println(q.getHealth());
     }
 }

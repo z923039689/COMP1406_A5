@@ -20,7 +20,7 @@ public class Peach implements Comparable<Peach>{
 
   @Override
   public String toString(){
-      return "ripeness: " + this.ripeness + ", bad: " + this.bad;
+      return "ripeness: " + this.ripeness + " | bad: " + this.bad;
   }
   
   @Override 

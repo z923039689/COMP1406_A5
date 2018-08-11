@@ -12,9 +12,13 @@ public class Helper extends Player {
 
     public Helper(World w, String name, Location location, List<Peach> peaches, int health, RGB rgb){
         super(w, name, location, peaches, health, rgb);
-        this.location = w.home;
+        this.location = w.home; // helpers can only be instantiated in the home world
     }
 
+    /** gives the helper's peaches to the player in distress
+     *
+     * @param p is a player that is interacting with this player
+     */
     public void interact(Player p){
         for (int i = 0; i < this.peaches.size(); i++) {
             p.peaches.add(this.getPeach());

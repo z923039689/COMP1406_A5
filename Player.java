@@ -46,7 +46,7 @@ public class Player{
  public Location     getLocation(){ return location; }
  
  /** Getter for a player's peach */
- public Peach  getPeach(){ return peaches == null ? null : peaches.remove(0); }  
+ public Peach        getPeach(){ return peaches == null ? null : peaches.remove(0); }
  
  /** Getter for a player's health */
  public int          getHealth(){ return health; }
@@ -56,7 +56,7 @@ public class Player{
    * It defines what they should do when given a chance to do somerthing
    */
  public void play(){
-   if( health < 10 ){
+   if ( health < 10 ){
      getHelp();
      return;
    }
@@ -103,6 +103,24 @@ public class Player{
  
  /** ask for help when they need it */
  public void getHelp(){ world.getHome().callForHelp(this, location); }
+
+ /** Allows a player to eat a peach they are carrying
+   * If the peach is bad, the ripeness of the peach is deducted from the player's health
+   * Else the ripeness of the peach is added to the player's health
+   */
+ public void eatPeach() {
+     try {
+         if (this.peaches.get(0).bad) {
+             this.health -= this.getPeach().ripeness;
+         }
+         else {
+             this.health += this.getPeach().ripeness;
+         }
+     }
+     catch (IndexOutOfBoundsException e) {
+         System.out.println("Player has no peaches to eat.");
+     }
+ }
 
  /**store peaches at home location
  *
