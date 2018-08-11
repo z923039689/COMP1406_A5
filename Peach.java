@@ -17,6 +17,11 @@ public class Peach implements Comparable<Peach>{
   
   /** ages a peach in some way */
   public void age(){}
+
+  @Override
+  public String toString(){
+      return "ripeness: " + this.ripeness + ", bad: " + this.bad;
+  }
   
   @Override 
   public int compareTo(Peach other){

@@ -3,8 +3,8 @@ package A5;
 import java.util.ArrayList;
 
 public class EmptyLocation extends Location{
-  public EmptyLocation(Position p, String description){
-    super(p, description, new ArrayList<Player>(), new ArrayList<Peach>());
+  public EmptyLocation(World w, Position p, String description){
+    super(w, p, description, new ArrayList<Player>(), new ArrayList<Peach>());
   }
   
   /** getter for a Peach */

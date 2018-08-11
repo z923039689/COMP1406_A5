@@ -3,6 +3,7 @@ package A5;
 import java.util.List;
 
 public class Location{
+  protected World world;
   protected Position position;
   
   protected String description = "Nothing special about this location.";
@@ -10,7 +11,8 @@ public class Location{
   protected List<Player> peopleAtLocation = null;
   protected List<Peach>  peachesAtLocation = null;
   
-  public Location(Position p, String description, List<Player> people, List<Peach> peaches){
+  public Location(World w, Position p, String description, List<Player> people, List<Peach> peaches){
+    this.world = w;
     this.position = p;
     this.description = description;
     this.peopleAtLocation = people;

@@ -102,9 +102,7 @@ public class Player{
  }
  
  /** ask for help when they need it */
- public void getHelp(){ 
-   world.getHome().callForHelp(this, location);
- }
+ public void getHelp(){ world.getHome().callForHelp(this, location); }
 
  /**store peaches at home location
  *

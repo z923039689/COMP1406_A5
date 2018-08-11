@@ -13,10 +13,10 @@ public class World{
     locations = new Location[3][3];
     for(int r=0; r<3; r+=1){
       for(int c=0; c<3; c+=1){
-        locations[r][c] = new EmptyLocation(new Position(r,c), "Nothing here to see.");
+        locations[r][c] = new EmptyLocation(this, new Position(r,c), "Nothing here to see.");
       }
     }
-    home = new Home(null, null, new ArrayList<>(), new ArrayList<>());
+    home = new Home(this,null, null, new ArrayList<>(), new ArrayList<>());
     players = new ArrayList<Player>();
   }
   
