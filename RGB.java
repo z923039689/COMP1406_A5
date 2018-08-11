@@ -22,8 +22,6 @@ public class RGB{
   public RGB(int gray){
     this(gray,gray,gray);
   }
- 
-  
-  
+
   
 }
