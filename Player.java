@@ -139,7 +139,9 @@ public class Player{
      }
     }
    }
+   else { System.out.println("Number of peaches exceeds player's current inventory of " + this.peaches.size() + "."); }
   }
+  else { System.out.println("Must be at Home location in order to store peaches."); }
  }
  
  @Override

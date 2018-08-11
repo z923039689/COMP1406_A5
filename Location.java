@@ -18,8 +18,11 @@ public class Location{
     this.peopleAtLocation = people;
     this.peachesAtLocation = peaches;
   }
-  
-  /** getter for position */
+
+  /** getter for world */
+  public World getWorld(){ return world; }
+
+    /** getter for position */
   public Position getPosition(){ return position; }
   
   /** getter for description */
@@ -35,8 +38,7 @@ public class Location{
   public int numberOfPeaches(){
     return peachesAtLocation == null ? 0 : peachesAtLocation.size();
   }
-  
-  
+
   /** adding a peach to the location */
   public void addPeach(Peach p){ peachesAtLocation.add(p); }
   

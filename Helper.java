@@ -12,16 +12,60 @@ public class Helper extends Player {
 
     public Helper(World w, String name, Location location, List<Peach> peaches, int health, RGB rgb){
         super(w, name, location, peaches, health, rgb);
-        this.location = w.home; // helpers can only be instantiated in the home world
+        this.name = "helper";
+        this.location = w.getHome(); // helpers can only be instantiated in the home world
     }
 
+    @Override
+    /** Peaches cannot be taken from a helper, so we return null. */
+    public Peach        getPeach(){ return null; }
+
+    @Override
+    /** Helper do not play a turn. */
+    public void play(){ }
+
+    @Override
+    /** Helper's do not move.
+     * Once they have completed their task, they will remain in the home location and will do nothing. */
+    public boolean move(int direction){ return false; }
+
+    @Override
+    /** A helper's health will never change.
+     *
+     * @param h is the new health of the player
+     */
+    public void setHealth(int h) {}
+
+    @Override
+    /** Naturally helpers do not call for help. */
+    public void getHelp() {}
+
+    @Override
+    /** Helper do not eat peaches. Their health is constant. */
+    public void eatPeach() {}
+
+    @Override
+    /** Helper do not store peaches at the home location. */
+    public void storeAtHome(int peaches) {}
+
+    @Override
     /** gives the helper's peaches to the player in distress
      *
      * @param p is a player that is interacting with this player
      */
     public void interact(Player p){
-        for (int i = 0; i < this.peaches.size(); i++) {
-            p.peaches.add(this.getPeach());
+        for (int i = this.peaches.size(); i > 0; i--) {
+            p.peaches.add(this.peaches.remove(0));
         }
+        System.out.println(p.name + " now has " + p.peaches.size() + " peaches.");
+    }
+
+    /** Helpers will always have the same name/health, and quite possibly location*/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        return false;
     }
 }

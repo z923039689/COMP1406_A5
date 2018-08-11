@@ -20,13 +20,16 @@ public class Home extends Location {
         this.peaches = new HashMap<Player, ArrayList<Peach>>();
     }
 
+    /** getter for peaches stored at Home location by player */
+    public Map<Player, ArrayList<Peach>> getPeaches(){ return peaches; }
+
     /** When a player calls the getHelp method, this method instantiates a new helper, sends them to that player's
      * location, and gives the player 10 ripe peaches. The helper then returns to Home, where they remain.
      * @param p the player who calls the getHelp method
      * @param l that player's current location
      */
     public void callForHelp(Player p, Location l){
-        Helper helper = new Helper(this.world,null, this, new ArrayList<Peach>(), 1000000, null);
+        Helper helper = new Helper(this.getWorld(),null, this.getWorld().getHome(), new ArrayList<Peach>(), 1000000, null);
         for (int i = 0; i < 10; i++) { // instantiate 10 ripe peaches
             helper.peaches.add(new Peach(10, false));
         }
@@ -34,6 +37,14 @@ public class Home extends Location {
         helper.interact(p); // give the 10 ripe peaches to the player in distress
         helper.setLocation(this);
     }
+
+    // Home location does not store any peaches outside of player inventory
+    @Override
+    public Peach getPeach(){return null;}
+
+    @Override
+    public void addPeach(Peach p) {}
+
 
     public static void main(String[] args) {
         World w = new World();
@@ -57,10 +68,18 @@ public class Home extends Location {
         System.out.println(p.peaches.toString());
         q.play();
         System.out.println(q.peaches.toString());
+        System.out.println(w.home.getPlayers().get(1).peaches.toString());
         System.out.println(w.getHome().peopleAtLocation);
         System.out.println(q.getHealth());
         q.eatPeach();
         System.out.println(q.peaches.toString());
         System.out.println(q.getHealth());
+        q.storeAtHome(1);
+        q.setLocation(w.getHome());
+        q.storeAtHome(1);
+        q.storeAtHome(1);
+        q.storeAtHome(10);
+        System.out.println(w.home.peaches.toString());
+        System.out.println(w.home.getPlayers().get(1).equals(w.home.getPlayers().get(1)));
     }
 }
