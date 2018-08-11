@@ -20,8 +20,14 @@ public class Home extends Location {
         this.peaches = new HashMap<Player, ArrayList<Peach>>();
     }
 
-    /** getter for peaches stored at Home location by player */
+    /** getter for peaches stored at Home location for all players */
     public Map<Player, ArrayList<Peach>> getPeaches(){ return peaches; }
+
+    /** getter for peaches stored at Home location for a specific player */
+    public ArrayList<Peach> getPeaches(Player p){
+        if (!peaches.containsKey(p)) {return new ArrayList<>();}
+        return peaches.get(p);
+    }
 
     /** When a player calls the getHelp method, this method instantiates a new helper, sends them to that player's
      * location, and gives the player 10 ripe peaches. The helper then returns to Home, where they remain.

@@ -18,7 +18,7 @@ public class Helper extends Player {
 
     @Override
     /** Peaches cannot be taken from a helper, so we return null. */
-    public Peach        getPeach(){ return null; }
+    public Peach getPeach(){ return null; }
 
     @Override
     /** Helper do not play a turn. */

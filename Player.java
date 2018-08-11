@@ -127,24 +127,42 @@ public class Player{
  * @param peaches number of peaches to deposit at home
  */
  public void storeAtHome(int peaches) {
-  if (this.location.position.getX() == 0 && this.location.position.getY() == 0) { // ensure player is at Home location
-   if (peaches <= this.peaches.size()) { // ensure the amount of peaches they want to drop off does not exceed player's inventory
-    for (int i = 0; i < peaches; i++) {
-     if (this.world.home.peaches.containsKey(this)) { // check to see if player exists in inventory keys
-      this.world.home.peaches.get(this).add(this.getPeach());
+     if (this.location.position.getX() == 0 && this.location.position.getY() == 0) { // ensure player is at Home location
+         if (peaches <= this.peaches.size()) { // ensure the amount of peaches they want to drop off does not exceed player's inventory
+             for (int i = 0; i < peaches; i++) {
+                 if (this.world.home.peaches.containsKey(this)) { // check to see if player exists in inventory keys
+                     this.world.home.peaches.get(this).add(this.getPeach());
+                 }
+                 else { // if not, add player to home inventory keys
+                     this.world.home.peaches.put(this, new ArrayList<Peach>());
+                     this.world.home.peaches.get(this).add(this.getPeach());
+                 }
+             }
+         }
+         else { System.out.println("Number of peaches exceeds player's current inventory of " + this.peaches.size() + "."); }
      }
-     else { // if not, add player to home inventory keys
-      this.world.home.peaches.put(this, new ArrayList<Peach>());
-      this.world.home.peaches.get(this).add(this.getPeach());
-     }
-    }
-   }
-   else { System.out.println("Number of peaches exceeds player's current inventory of " + this.peaches.size() + "."); }
-  }
-  else { System.out.println("Must be at Home location in order to store peaches."); }
+     else { System.out.println("Must be at Home location in order to store peaches."); }
  }
- 
- @Override
+
+    /**retrieve peaches from home location
+     *
+     * @param peaches number of peaches to retrieve from home inventory
+     */
+    public void retrieveFromHome(int peaches) {
+        if (this.location.position.getX() == 0 && this.location.position.getY() == 0) { // ensure player is at Home location
+            if (this.world.home.peaches.containsKey(this)) {
+                if (peaches <= this.world.home.peaches.get(this).size()) { // ensure the amount of peaches they want to retrieve does not exceed player's inventory
+                    for (int i = 0; i < peaches; i++) {
+                        this.peaches.add(this.world.home.peaches.get(this).remove(0));
+                    }
+                } else {
+                    System.out.println("Number of peaches exceeds player's current inventory of " + this.peaches.size() + ".");
+                }
+            } else { System.out.println("Player has no peaches stored at Home location."); }
+        } else { System.out.println("Must be at Home location in order to retrieve peaches."); }
+    }
+
+        @Override
  public String toString(){
    return name;
  }

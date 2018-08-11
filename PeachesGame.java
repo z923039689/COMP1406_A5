@@ -19,9 +19,11 @@ public class PeachesGame{
     p.peaches.add(new Peach(9, false));
     p.peaches.add(new Peach(1, true));
     System.out.println(Arrays.toString(p.peaches.toArray()));
+    p.retrieveFromHome(2);
 
     p.storeAtHome(2);
 
+    p.retrieveFromHome(3);
     System.out.println(w.home.peaches.toString());
     System.out.println(p.peaches.toString());
     q.play();
@@ -39,6 +41,13 @@ public class PeachesGame{
     q.storeAtHome(10);
     System.out.println(w.home.peaches.toString());
     System.out.println(w.home.getPlayers().get(1).equals(w.home.getPlayers().get(1)));
+    System.out.println(p.peaches.toString());
+    System.out.println(w.home.peaches.toString());
+    System.out.println(w.home.getPeaches().toString());
+      System.out.println(w.home.getPeaches(p));
+    //p.retrieveFromHome(2);
+    //System.out.println(p.peaches.toString());
+    //System.out.println(w.home.peaches.toString());
 
     /*World w = new World();
     Player p = new Player(w, "cat", w.home, new ArrayList<Peach>(), 50, RGB.YELLOW);
